@@ -1,0 +1,82 @@
+#+Title: Functional FM-Synthesis with Overtone
+#+Author: Martin Rykfors  @rykarn
+#+EPRESENT_FRAME_LEVEL: 1
+
+[[file:dx7.png]]
+Source: http://en.wikipedia.org/wiki/File:Yamaha_DX7_Table_4.JPG
+
+
+* About me
+
+
+Martin Rykfors
+@rykarn
+
+From Sweden
+Living in the UK for almost 2 years
+Living in Brighton since last summer
+
+Enjoy programming graphics and sounds
+
+* About this presentation
+  
+
+ ___|)____________________________________________________
+|___/__________________________|_______λ__________λ_______|
+|__/|____________________λ_____|__________________________|
+|_/(|,\_____________λ__________|____________λ_____________|
+|_\_|_/________λ_______________|__________________________|
+    |  
+  (_|     
+  
+I will live-code an fm-synth in overtone, but first some background
+
+- Overtone
+- What FM is
+- The structure of the synth we will be coding
+- Coding the synth!
+- Refactoring the synth!
+
+* Overtone
+
+Clojure interface to the Supercollider synthesis engine.
+
+- Define synthesizers
+- Route and process signals
+- Play sequences, melodies, chords...
+
+Focus on live-coding:
+- Share screen with the audience
+- Write/execute code to influence a running process
+
+* FM-Synthesis (sort of)
+  
+Output signal /y/ is a sine-wave modulated by a signal /m/:
+
+\begin{equation*}
+    y(t) = \sin (2\pi f t + m(t))
+\end{equation*}
+
+(Actually phase modulation)
+
+* Our PM synthesizer
+
+  -----------    -----------    -----------    -----------    ----------
+  |         |    |         |    |         |    |         |    |        | 
+  | sin-osc |--->| sin-osc |--->| * A-Env |--->|   LPF   |--->| Output |
+  |         |    |         |    |         |    |         |    |        |      
+  -----------    -----------    -----------    -----------    ----------      
+
+2 operator FM-synthesis through amplitude envelope and low-pass filter
+  
+Function composition!
+
+* Less talk, more sound!
+
+  -----------    -----------    -----------    -----------    ----------
+  |         |    |         |    |         |    |         |    |        | 
+  | sin-osc |--->| sin-osc |--->| * A-Env |--->|   LPF   |--->| Output |
+  |         |    |         |    |         |    |         |    |        |      
+  -----------    -----------    -----------    -----------    ----------      
+  
+Let's build it!
